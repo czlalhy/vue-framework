@@ -17,6 +17,7 @@ import TpColumnFilter from './column-filter/index'
 import TpFormEngine from './form-engine/index'
 import TpDbClick from './db-click/index'
 import TpAutoComplete from './auto-complete/index'
+import TpTextarea from './textarea/index'
 import ZkTable from './table/index'
 import ZkForm from './form/index'
 import ZkFormItem from './form-item/index'
@@ -39,6 +40,7 @@ const Components = [
     TpFormEngine,
     TpDbClick,
     TpAutoComplete,
+    TpTextarea,
     ZkTable,
     ZkForm,
     ZkFormItem

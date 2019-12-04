@@ -25,19 +25,19 @@
                         <el-submenu :index="item.id" v-if="item.children && item.children.length > 0 && item.flag == '0'">
                             <template slot="title">{{item.label}}</template>
                             <template v-for="child in item.children">
-                                <el-menu-item :index="child.url" :key="child.url" v-if="child.flag == '0' && child.url != ''">
+                                <el-menu-item :proxyUrl="child.proxyUrl" :index="child.url" :key="child.url" v-if="child.flag == '0' && child.url != ''">
                                     {{child.label}}
                                 </el-menu-item>
                                 <el-submenu :index="child.id" v-if="child.flag == '0' && child.url == ''">
                                     <template slot="title">{{child.label}}</template>
                                     <div v-if="child.url == ''">
                                         <template v-for="child1 in child.children">
-                                            <el-menu-item :index="child1.url" :key="child1.url" v-if="child1.flag == '0' && child1.url != ''"> {{child1.label}}
+                                            <el-menu-item :proxyUrl="child1.proxyUrl" :index="child1.url" :key="child1.url" v-if="child1.flag == '0' && child1.url != ''"> {{child1.label}}
                                             </el-menu-item>
                                             <el-submenu :index="child1.id" v-if="child1.flag == '0' && child1.url == ''">
                                                 <template slot="title"><span slot="title">{{child1.label}}</span></template>
                                                 <div v-if="child1.url == ''">
-                                                    <el-menu-item v-for="child2 in child1.children" :index="child2.url" :key="child2.url" v-if="child2.flag == '0' && child2.url != ''"> {{child2.label}}
+                                                    <el-menu-item :proxyUrl="child2.proxyUrl" v-for="child2 in child1.children" :index="child2.url" :key="child2.url" v-if="child2.flag == '0' && child2.url != ''"> {{child2.label}}
                                                     </el-menu-item>
                                                 </div>
                                             </el-submenu>
@@ -46,7 +46,7 @@
                                 </el-submenu>
                             </template>
                         </el-submenu>
-                        <el-menu-item v-if="!item.children || item.children.length == 0" :index="item.url" :key="item.url">{{item.label}}</el-menu-item>
+                        <el-menu-item :proxyUrl="item.proxyUrl" v-if="!item.children || item.children.length == 0" :index="item.url" :key="item.url">{{item.label}}</el-menu-item>
                     </template>
                 </el-menu>
             </div>
@@ -158,9 +158,15 @@ export default {
             localStorage.setItem('_layoutType', 'left');
             this.$store.commit('CHANGE_HOME', { 'type': 'left' });
         },
-        onHandleSelect(a, b) {
+        onHandleSelect(a, b, c) {
             window.reMethods = null;
             Vue.tpUtil.registerConfig('_' + a);
+            if(c.$attrs.proxyUrl) {
+                b[b.length-1] = c.$attrs.proxyUrl;
+                sessionStorage.setItem("proxyMenu", c.$attrs.proxyUrl);
+            } else {
+                sessionStorage.setItem("proxyMenu", '');
+            }
             this.$store.commit('BREADCRUMBS', this.getBreadcrumbs(b));
             sessionStorage.setItem('headerTitleTop', this.breadcrumbs.join(','));
         },

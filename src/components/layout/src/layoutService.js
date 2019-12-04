@@ -90,6 +90,10 @@ let layoutService = {
                                 flag: true,
                                 name: data[name][label]
                             };
+                            if(data[name].img && data[name].img == '1') {
+                                data[name].proxyUrl = data[name].url;
+                                data[name].url = '/product/proxy_app?_t='+ data[name].ids;
+                            }
                         } else {
                             pathArr['_' + data[name].id] = {
                                 name: data[name][label]

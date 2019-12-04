@@ -996,32 +996,9 @@ h4.td-title {
 .login-select .el-input__suffix {
     right: 35px;
 }
-.zk-table {
-    background: #fff;
-    margin-top:0;
-}
-.zk-table .row{
-    margin-bottom: 0px;
-}
-
-.zk-table .row .td{
-    border:1px solid #dfe6ec;
-    /*height:32px;*/
-    float:left;
-    margin-right:-1px;
-    margin-top:-1px;
-    display:block;
-    border-radius: 0px;
-    padding-right: 4px;
-}
-
-.zk-table .row .td-lable{
-    text-align: right;
-    padding: 4px;
-    font-weight: 500;
-    color: #303133;
-}
-
-.zk-table .td .el-form-item__content, .zk-table .td .el-form-item {
-    width:100%;
+.more-right {
+  float: right;
+  padding-right: 10px;
+  color: #006cb7;
+  cursor: pointer;
 }

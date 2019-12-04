@@ -114,7 +114,7 @@ let tpUtil = {
      * @param {Object} obj 
      * @return {promise}
      */
-    confirm: function(obj) {
+    confirm(obj) {
         var o = {
                 title: this.getInzTranslate('gTitlePrompt'),
                 msg: '',
@@ -376,7 +376,7 @@ let tpUtil = {
         return d;
     },
     //翻译ggcode
-    translationData: function(code, key) {
+    translationData(code, key) {
         var v = Vue.tpUtil.getCache('select', this.getMd5(code))
         key = key + '';
         if (v) {
@@ -428,7 +428,7 @@ let tpUtil = {
         return o;
     },
     //初始化ggcode翻译，不依赖下拉缓存
-    initTranslation: function(codeType, callFn) {
+    initTranslation(codeType, callFn) {
         var url = this.getUrl({ apiName: 'layoutSelectGGCodeList', contextName: 'auth' }),
             path = codeType,
             param = { codeType: codeType, validind: '1' },
@@ -451,16 +451,17 @@ let tpUtil = {
         }
     },
     //初始化poName翻译，不依赖下拉缓存
-    initTranslationPoName: function(list, callFn) {
+    initTranslationPoName(list, call) {
         if (list) {
             var obj = null,
                 params = {},
                 cacheKey = '',
-                b = false;
+                b = false,
+                c = Vue.tpUtil.getCache();
             for (var key in list) {
                 obj = list[key];
-                cacheKey = this.getMd5(JSON.stringify(obj) || '');
-                if (!this.getCache('select', cacheKey)) {
+                cacheKey = Vue.tpUtil.md5(JSON.stringify(obj) || '');
+                if (!Vue.tpUtil.getCache('select', cacheKey)) {
                     params[cacheKey] = obj;
                     b = true;
                 }
@@ -474,17 +475,17 @@ let tpUtil = {
                     if (res.resCode == '0000') {
                         if (res.resData) {
                             for (var key in res.resData) {
-                                Vue.tpUtil.setCache('select', key, res.resData[key]);
+                                Vue.tpUtil.setCache('select', key, res.resData[key])
                             }
                         }
                     }
-                    typeof(callFn) === 'function' && callFn.call(this);
+                    call();
                 });
             } else {
-                typeof(callFn) === 'function' && callFn.call(this);
+                call();
             }
         } else {
-            typeof(callFn) === 'function' && callFn.call(this);
+            call();
         }
     },
     /** 字符转日期

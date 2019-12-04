@@ -468,7 +468,7 @@ a {
 .leftMenu {
     flex: 0 0 200px;
     width: 200px;
-    border-right: none;
+    border-right: none; 
     background-color: linear-gradient(to bottom, #4d7fb8 0%, #4571a0 100%) !important; 
 }
 
