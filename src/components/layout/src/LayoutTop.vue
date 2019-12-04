@@ -3,71 +3,71 @@
         <div class="main-header">
             <div class="logo logo-width">
                 <img src="dist/img/main_logo.png" alt="">
-                        </div>
-                <div class="weblogo">
-                    <img src="dist/img/web_name.png" alt="" width="240" height="29">
-                        </div>
-                    <div class="userinfo cursor" @click="logout">
-                        {{'gTitleLogoutLogin' | translate('Logout Login')}}
-                    </div>
-                    <div class="userinfo">
-                        {{sysUserName}}
-                    </div>
-                    <span class="time">
-                            <a v-if="isShowMenu" href="javascript:;" @click="changeHome">{{'gTitleSwitch' | translate('Switch')}}</a>
-                             Version {{version}}  {{new Date() | time}}
-                        </span>
-                </div>
-                <div class="searchWrapper" v-if="isShowMenu">
-                    <div class="path-txt">
-                        <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" @select="onHandleSelect" @open="onHandleOpen" unique-opened router ref="topMenu">
-                            <template v-for="(item,index) in menus" index="0">
-                                <el-submenu :index="item.id" v-if="item.children && item.children.length > 0 && item.flag == '0'">
-                                    <template slot="title">{{item.label}}</template>
-                                    <template v-for="child in item.children">
-                                        <el-menu-item :index="child.url" :key="child.url" v-if="child.flag == '0' && child.url != ''">
-                                            {{child.label}}
-                                        </el-menu-item>
-                                        <el-submenu :index="child.id" v-if="child.flag == '0' && child.url == ''">
-                                            <template slot="title">{{child.label}}</template>
-                                            <div v-if="child.url == ''">
-                                                <template v-for="child1 in child.children">
-                                                    <el-menu-item :index="child1.url" :key="child1.url" v-if="child1.flag == '0' && child1.url != ''"> {{child1.label}}
-                                                    </el-menu-item>
-                                                    <el-submenu :index="child1.id" v-if="child1.flag == '0' && child1.url == ''">
-                                                        <template slot="title"><span slot="title">{{child1.label}}</span></template>
-                                                        <div v-if="child1.url == ''">
-                                                            <el-menu-item v-for="child2 in child1.children" :index="child2.url" :key="child2.url" v-if="child2.flag == '0' && child2.url != ''"> {{child2.label}}
-                                                            </el-menu-item>
-                                                        </div>
-                                                    </el-submenu>
-                                                </template>
-                                            </div>
-                                        </el-submenu>
-                                    </template>
-                                </el-submenu>
-                                <el-menu-item v-if="!item.children || item.children.length == 0" :index="item.url" :key="item.url">{{item.label}}</el-menu-item>
-                            </template>
-                        </el-menu>
-                    </div>
-                    <div class="path-more" v-show="isMore">
-                        <i class="fa el-icon-caret-left" :class="{disable : showIndex === 0}" @click="pre()"></i>
-                        <i class="fa el-icon-caret-right" :class="{disable : showIndex === hiddenIndex.length}" @click="next()"></i>
-                    </div>
-                </div>
-                <div class="searchWrapper breadcrumb-wrapper" v-if="isShowMenu">
-                    <div>
-                        <el-breadcrumb separator="/">
-                            <el-breadcrumb-item :key="index" v-for="(item,index) in breadcrumbs">{{item}}</el-breadcrumb-item>
-                        </el-breadcrumb>
-                    </div>
-                </div>
-                <div :style="{ top: top}" v-loading="loading" :element-loading-text="'gTitlePageLoading' | translate('Loading the page...')" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.5)" class="main top-main" id="content-container">
-                    <transition name="fade" mode="out-in">
-                        <router-view></router-view>
-                    </transition>
-                </div>
             </div>
+            <div class="weblogo">
+                <img src="dist/img/web_name.png" alt="" width="240" height="29">
+            </div>
+            <div class="userinfo cursor" @click="logout">
+                {{'gTitleLogoutLogin' | translate('Logout Login')}}
+            </div>
+            <div class="userinfo">
+                {{sysUserName}}
+            </div>
+            <span class="time">
+                <a v-if="isShowMenu" href="javascript:;" @click="changeHome">{{'gTitleSwitch' | translate('Switch')}}</a>
+                Version {{version}} {{new Date() | time}}
+            </span>
+        </div>
+        <div class="searchWrapper" v-if="isShowMenu">
+            <div class="path-txt">
+                <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" @select="onHandleSelect" @open="onHandleOpen" unique-opened router ref="topMenu">
+                    <template v-for="(item,index) in menus" index="0">
+                        <el-submenu :index="item.id" v-if="item.children && item.children.length > 0 && item.flag == '0'">
+                            <template slot="title">{{item.label}}</template>
+                            <template v-for="child in item.children">
+                                <el-menu-item :index="child.url" :key="child.url" v-if="child.flag == '0' && child.url != ''">
+                                    {{child.label}}
+                                </el-menu-item>
+                                <el-submenu :index="child.id" v-if="child.flag == '0' && child.url == ''">
+                                    <template slot="title">{{child.label}}</template>
+                                    <div v-if="child.url == ''">
+                                        <template v-for="child1 in child.children">
+                                            <el-menu-item :index="child1.url" :key="child1.url" v-if="child1.flag == '0' && child1.url != ''"> {{child1.label}}
+                                            </el-menu-item>
+                                            <el-submenu :index="child1.id" v-if="child1.flag == '0' && child1.url == ''">
+                                                <template slot="title"><span slot="title">{{child1.label}}</span></template>
+                                                <div v-if="child1.url == ''">
+                                                    <el-menu-item v-for="child2 in child1.children" :index="child2.url" :key="child2.url" v-if="child2.flag == '0' && child2.url != ''"> {{child2.label}}
+                                                    </el-menu-item>
+                                                </div>
+                                            </el-submenu>
+                                        </template>
+                                    </div>
+                                </el-submenu>
+                            </template>
+                        </el-submenu>
+                        <el-menu-item v-if="!item.children || item.children.length == 0" :index="item.url" :key="item.url">{{item.label}}</el-menu-item>
+                    </template>
+                </el-menu>
+            </div>
+            <div class="path-more" v-show="isMore">
+                <i class="fa el-icon-caret-left" :class="{disable : showIndex === 0}" @click="pre()"></i>
+                <i class="fa el-icon-caret-right" :class="{disable : showIndex === hiddenIndex.length}" @click="next()"></i>
+            </div>
+        </div>
+        <div class="searchWrapper breadcrumb-wrapper" v-if="isShowMenu">
+            <div>
+                <el-breadcrumb separator="/">
+                    <el-breadcrumb-item :key="index" v-for="(item,index) in breadcrumbs">{{item}}</el-breadcrumb-item>
+                </el-breadcrumb>
+            </div>
+        </div>
+        <div :style="{ top: top}" v-loading="loading" :element-loading-text="'gTitlePageLoading' | translate('Loading the page...')" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.5)" class="main top-main" id="content-container">
+            <transition name="fade" mode="out-in">
+                <router-view></router-view>
+            </transition>
+        </div>
+    </div>
 </template>
 <script>
 import Vue from 'vue'
@@ -122,7 +122,7 @@ export default {
                             sum = 0,
                             arr = [],
                             lastWidth = 0;
-                        if(!_this.menuList[len - 1] || !_this.menuList[len - 1].$el) {
+                        if (!_this.menuList[len - 1] || !_this.menuList[len - 1].$el) {
                             return;
                         } else {
                             lastWidth = _this.menuList[len - 1].$el.clientWidth;
@@ -177,7 +177,13 @@ export default {
             this.$confirm(Vue.filter('translate')('confirmQuit'), Vue.filter('translate')('gTitlePrompt'), {
                 type: 'warning'
             }).then(function() {
-                Vue.tpUtil.destroyApp(true);
+                var url = Vue.tpUtil.getUrl({
+                    apiName: 'layoutAuthLogout',
+                    contextName: 'auth'
+                });
+                Vue.tpUtil.http.get(url).then(function(res) {
+                    Vue.tpUtil.destroyApp(true);
+                });
             }, function() {
                 console.log('cance')
             });

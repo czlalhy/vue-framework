@@ -17,7 +17,9 @@ import TpColumnFilter from './column-filter/index'
 import TpFormEngine from './form-engine/index'
 import TpDbClick from './db-click/index'
 import TpAutoComplete from './auto-complete/index'
-import TpTable from './table/index'
+import ZkTable from './table/index'
+import ZkForm from './form/index'
+import ZkFormItem from './form-item/index'
 
 const Components = [
     TpLayout,
@@ -37,7 +39,9 @@ const Components = [
     TpFormEngine,
     TpDbClick,
     TpAutoComplete,
-    TpTable
+    ZkTable,
+    ZkForm,
+    ZkFormItem
 ];
 
 const install = function(Vue, opts = {}) {

@@ -141,7 +141,7 @@ function alertInfo(flag, data, b) {
     } else {
         var statusText = '',
             msg = '';
-        if (!b) {
+        if (!b && data.response && data.response.data) {
             statusText = Vue.tpUtil.getInzTranslate('g' + data.response.data.resCode) + '【' + data.response.data.resCode + '】';
             if (data.response.data.traceID) {
                 statusText += '；TraceID = ' + data.response.data.traceID;
@@ -153,7 +153,7 @@ function alertInfo(flag, data, b) {
                 msg += 'error';
             }
             //commit('COMMIT_DIALOG', { 'statusText': statusText, 'status': 'Tips', 'msg': msg, 'showLoading': true })
-        } else {
+        } else if (data.data) {
             statusText = Vue.tpUtil.getInzTranslate('g' + data.data.resCode) + '【' + data.data.resCode + '】';
             if (data.data.traceID) {
                 statusText += '；TraceID = ' + data.data.traceID;

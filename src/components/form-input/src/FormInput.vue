@@ -24,7 +24,7 @@ export default {
         rules: {
             type: Array,
             default: null
-        }
+        },
     },
     data: function() {
         return {

@@ -27,7 +27,7 @@ let cache = {
         translations: {}, // 国际化数据保存,设置后销毁
         token: null,
         config: {
-            version: '1.0.0.0',
+            version: '2.0.0.0',
             islanguage: false,
             maxlength: 30
         },
@@ -434,17 +434,55 @@ let tpUtil = {
             param = { codeType: codeType, validind: '1' },
             vo = 'ggCodeVoList',
             cacheKey = Vue.tpUtil.md5(path),
-            list = this.getCache('select', cacheKey);
+            list = this.getCache('select', cacheKey),
+            _this = this;
         if (!list) {
             this.http.post(url, param, { shade: true }).then(function(res) {
                 if (res.resCode === '0000') {
                     var data = res.resData[vo];
                     for (var t in data) {
-                        Vue.tpUtil.setCache('select', Vue.tpUtil.md5(t), data[t]);
+                        Vue.tpUtil.setCache('select', _this.getMd5(t), data[t]);
                     }
                     typeof(callFn) === 'function' && callFn.call(this);
                 }
             });
+        } else {
+            typeof(callFn) === 'function' && callFn.call(this);
+        }
+    },
+    //初始化poName翻译，不依赖下拉缓存
+    initTranslationPoName: function(list, callFn) {
+        if (list) {
+            var obj = null,
+                params = {},
+                cacheKey = '',
+                b = false;
+            for (var key in list) {
+                obj = list[key];
+                cacheKey = this.getMd5(JSON.stringify(obj) || '');
+                if (!this.getCache('select', cacheKey)) {
+                    params[cacheKey] = obj;
+                    b = true;
+                }
+            }
+            if (b) {
+                var url = Vue.tpUtil.getUrl({
+                    apiName: 'layoutSelectGGCodeOtherListMult',
+                    contextName: 'auth'
+                });
+                Vue.tpUtil.http.post(url, params).then(function(res) {
+                    if (res.resCode == '0000') {
+                        if (res.resData) {
+                            for (var key in res.resData) {
+                                Vue.tpUtil.setCache('select', key, res.resData[key]);
+                            }
+                        }
+                    }
+                    typeof(callFn) === 'function' && callFn.call(this);
+                });
+            } else {
+                typeof(callFn) === 'function' && callFn.call(this);
+            }
         } else {
             typeof(callFn) === 'function' && callFn.call(this);
         }
@@ -606,6 +644,9 @@ let tpUtil = {
         //            console.log('Current TimeZone:' + tz);
 
         return tz;
+    },
+    getBtnAuth: function(key) {
+        return this.getCache('BtnsData', '_' + key);
     },
     //四舍五入
     iTofixed(num, fractionDigits) {

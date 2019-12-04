@@ -21,6 +21,7 @@ const config = {
         'uploadAddFile': '/docinfo/add',
         'layoutMenu': '/tpsgi/jwt/menu',
         'layoutAuth': '/jwt/login',
+        'layoutAuthLogout': '/jwt/logout',
         'layoutRefresh': '/jwt/refresh',
         'layoutSelectGGCodeList': '/gg_code/find_list',
         'layoutSelectGGCodeOtherList': '/gg_code/find_other_list',

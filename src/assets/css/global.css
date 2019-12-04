@@ -1,4 +1,8 @@
 @charset "UTF-8";
+@font-face {
+  font-family: 'TP Courier New';
+  src: url('fonts/Courier_New_Bold.ttf');
+}
 body {
     margin: 0px;
     padding: 0px;
@@ -147,8 +151,8 @@ a {
     height: 35px;
     font-size: 22px;
     border-color: #dcdcdc;
-    border-right-width: 1px;
-    border-right-style: solid;
+    /*border-right-width: 1px;
+    border-right-style: solid;*/
     margin: 5px 0;
     box-sizing: border-box;
     overflow: hidden;
@@ -157,12 +161,12 @@ a {
 .main-header .logo.logo-width {
     float: left;
     width: 200px;
-    padding-left: 50px;
+    padding-left: 25px;
 }
 
 .main-header .logo.logo-width img {
     width: 140px;
-    height: 35px;
+    height: 38px;
 }
 
 .main-header .tools {
@@ -465,6 +469,7 @@ a {
     flex: 0 0 200px;
     width: 200px;
     border-right: none;
+    background-color: linear-gradient(to bottom, #4d7fb8 0%, #4571a0 100%) !important; 
 }
 
 .leftMenu>.el-submenu>.el-submenu__title:hover {
@@ -1161,29 +1166,79 @@ table.default-table td {
 .el-checkbox {
     color: #1f2d3d !important;
 }
-
 .print-textarea1 textarea {
-    width: 525pt !important;
-    font-size: 5pt !important;
-    font-family: Courier New !important;
+    width: 760px !important;
+    margin-left: 74px !important;
+    font-size: 13.3333px !important;
+    font-weight: 400 !important;
+    font-family: TP Courier New,monospace !important;
+    transform: scaleX(1.2003);
+    overflow-y: scroll;
 }
 .print-textarea2 textarea {
-    width: 428pt !important;
-    font-size: 5pt !important;
-    font-family: Courier New !important;
+    width: 627px !important;
+    margin-left: 63px !important;
+    font-size: 13.3333px !important;
+    font-family: TP Courier New,monospace !important;
+    font-weight: 400 !important;
+    transform: scaleX(1.2003);
+    overflow-y: scroll;
 }
 .print-textarea3 textarea {
-    width: 356pt !important;
-    font-size: 11pt !important;
-    font-family: Courier New !important;
+    width: 492px !important;
+    margin-left: 47px !important;
+    font-size: 18.3333px !important;
+    font-family: TP Courier New,monospace !important;
+    font-weight: 400 !important;
+    transform: scaleX(1.20022);
+    overflow-y: scroll;
 }
 .print-textarea4 textarea {
-    width: 525pt !important;
-    font-size: 8pt !important;
-    font-family: Courier New !important;
+    width: 765px !important;
+    margin-left: 76px !important;
+    font-size: 13.3333px !important;
+    font-family: TP Courier New,monospace !important;
+    font-weight: 400 !important;
+    transform: scaleX(1.2003);
+    overflow-y: scroll;
 }
 .print-textarea5 textarea {
-    width: 525pt !important;
-    font-size: 9pt !important;
-    font-family: Courier New !important;
+    width: 765px !important;
+    margin-left: 74px !important;
+    font-size: 15px !important;
+    font-family: TP Courier New,monospace !important;
+    font-weight: 400 !important;
+    transform: scaleX(1.2);
+    overflow-y: scroll;
+}
+.print-textarea6 textarea {
+    width: 700px !important;
+    margin-left: 70px !important;
+    font-size: 13.3333px !important;
+    font-family: TP Courier New,monospace !important;
+    font-weight: 400 !important;
+    transform: scaleX(1.2003);
+    overflow-y: scroll;
+}
+.redClass input {
+    background-color: red !important;
+}
+.el-tooltip__popper {
+    max-width: 40%;
+}
+.tp-tag {
+    margin-right: 5px;
+    margin-bottom: 3px;
+}
+.el-table .warning-row {
+    background: #E6A23C;
+}
+.el-table .success-row {
+    background: #67C23A;
+}
+.el-table .danger-row {
+    background: #F56C6C;
+}
+.el-table .info-row {
+    background: #909399;
 }

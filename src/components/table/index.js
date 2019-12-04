@@ -4,10 +4,10 @@
 * @author 陈柱良
 * @time 2019/04/18
 */
-import TpTable from './src/Table.vue';
+import ZkTable from './src/Table.vue';
 
-TpTable.install = function(Vue) {
-  Vue.component(TpTable.name, TpTable);
+ZkTable.install = function(Vue) {
+  Vue.component(ZkTable.name, ZkTable);
 };
 
-export default TpTable;
+export default ZkTable;

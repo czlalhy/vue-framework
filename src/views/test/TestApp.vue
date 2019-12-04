@@ -6,87 +6,95 @@
                 <tp-form-engine @onAdd="onAddT" :correct="1" @onDeletes="onDeletesT" ref="engineaAcciInfoNameListForm" :data="engineData" productCode="TPG_NameList" planCode="D" subjectType="0006" v-model="acciRiskForm.guSubjectAcciNameListVoList"></tp-form-engine>
             </el-collapse-item> -->
         <!--  </el-collapse> -->
-        
-        <tp-table :searchFilters="saaTaskVoFilters" api="sysTaskSearch" vo="saaTaskVoList" context="auth" 
-        :before-validate="beforeValidate" :export-excel="{'isShow': true, 'fileName': 'testExecl', 'exclude': ['Operation'], 'validate': true}" export-all-excel>
-            <template v-slot:search="scope">
-                <tr>
-                    <tp-form-label keyName="saaTaskVoTaskCode" defaultName="Task Code" :width="3"></tp-form-label>
-                    <tp-form-input prop="input1" :width="5" id="teee">
-                        <el-input size="mini" v-model="scope.filters.input1" placeholder="请输入内容"></el-input>
-                    </tp-form-input>
-                    <tp-form-label keyName="saaTaskVoTaskName" defaultName="Task Name" :width="3"></tp-form-label>
-                    <tp-form-input prop="taskCName" :width="5">
+        <zk-form :model="form" ref="form" :rules="rules">
+            <!-- <el-collapse v-model="mixinObject.activeNames">
+                <el-collapse-item :title="'nonPropTreatyLayerSection' | translate('Non-Proportional Treaty R/I Section Info')" name="1"> -->
+                    <li slot="test">1</li>
+                    <li slot="test">2</li>
+                    <li slot="test">3</li>
+                    <tr class="row" >
+                        <zk-form-item key-name="saaTaskVoTaskCode" prop="input1">
+                            <el-input v-model="form.input1" placeholder="请输入内容"></el-input>
+                        </zk-form-item>
+                        <zk-form-item key-name="saaTaskVoTaskCode" prop="input1">
+                            <el-input v-model="form.input1" placeholder="请输入内容"></el-input>
+                        </zk-form-item>
+                        <zk-form-item key-name="saaTaskVoTaskCode" prop="input1">
+                            <el-input v-model="form.input1" placeholder="请输入内容"></el-input>
+                        </zk-form-item>
+                    </tr>
+                    <!-- <el-row class="row">
+                        <zk-form-item key-name="saaTaskVoTaskCode" prop="input1">
+                            <el-input v-model="form.input1" placeholder="请输入内容"></el-input>
+                        </zk-form-item>
+                        <zk-form-item key-name="saaTaskVoTaskCode" prop="input1">
+                            <el-input v-model="form.input1" placeholder="请输入内容"></el-input>
+                        </zk-form-item>
+                        <zk-form-item key-name="saaTaskVoTaskCode" prop="input1">
+                            <el-input v-model="form.input1" placeholder="请输入内容"></el-input>
+                        </zk-form-item>
+                    </el-row>
+                    <el-row class="row">
+                        <zk-form-item key-name="saaTaskVoTaskCode" prop="input1">
+                            <el-input v-model="form.input1" placeholder="请输入内容"></el-input>
+                        </zk-form-item>
+                        <zk-form-item key-name="saaTaskVoTaskCode" prop="input1">
+                            <el-input v-model="form.input1" placeholder="请输入内容"></el-input>
+                        </zk-form-item>
+                        <zk-form-item key-name="saaTaskVoTaskCode" prop="input1">
+                            <el-input v-model="form.input1" placeholder="请输入内容"></el-input>
+                        </zk-form-item>
+                    </el-row> -->
+                <!-- </el-collapse-item>
+            </el-collapse> -->
+            <el-row class="toolbar-btn txt-center">
+                <el-button type="primary" @click.native="onSubmit()">{{ 'gBtnSave' | translate('Save') }}</el-button>
+                <el-button @click="returnPage()">{{ 'gBtnReturn' | translate('Return') }}</el-button>
+            </el-row>
+        </zk-form>
+        <zk-table @on-click-btn="onBtn" :table="table" :before-validate="beforeValidate" :export-excel="{'isShow': true, 'fileName': 'testExecl', 'exclude': ['Operation'], 'validate': true}" export-all-excel>
+            <!-- <template v-slot:search="scope">
+                <el-row class="row">
+                    <zk-form-item key-name="saaTaskVoTaskCode" prop="input1">
+                        <el-input v-model="scope.filters.input1" placeholder="请输入内容"></el-input>
+                    </zk-form-item>
+                    <zk-form-item key-name="saaTaskVoTaskName" prop="taskCName">
                         <tp-checkbox size="mini" code-type="Validind" default-value="true" v-model="scope.filters.checkbox"></tp-checkbox>
-                    </tp-form-input>
-                    <tp-form-label keyName="gValidStatus" defaultName="Valid Status" :width="3"></tp-form-label>
-                    <tp-form-input prop="searchValue" :width="5">
+                    </zk-form-item>
+                    <zk-form-item key-name="gValidStatus" prop="searchValue">
                         <tp-select size="mini" filterable optionsSet="1" codeType="Validind" default-params="codeCode" default-value="1" v-model="scope.filters.validind">
                         </tp-select>
-                    </tp-form-input>
-                </tr>
-                <tr>
-                    <tp-form-label keyName="saaTaskVoTaskCode" defaultName="Task Code" :width="3"></tp-form-label>
-                    <tp-form-input prop="taskCode" :width="5" id="teee">
+                    </zk-form-item>
+                </el-row>
+                <el-row class="row">
+                    <zk-form-item key-name="saaTaskVoTaskCode" prop="taskCode">
                         <tp-input v-model="scope.filters.taskCode" pattern-key="Zero" thou maxlength="10"></tp-input>
-                    </tp-form-input>
-                    <tp-form-label keyName="saaTaskVoTaskName" defaultName="Task Name" :width="3"></tp-form-label>
-                    <tp-form-input prop="taskCName" :width="5">
+                    </zk-form-item>
+                    <zk-form-item key-name="saaTaskVoTaskName" prop="taskCName">
                         <tp-input size="mini" maxlength="12" is-select v-model="scope.filters.input4" suffix="%" thou num-len="2"></tp-input>
-                    </tp-form-input>
-                    <tp-form-label keyName="gValidStatus" defaultName="Valid Status" :width="3"></tp-form-label>
-                    <tp-form-input prop="searchValue" :width="5">
+                    </zk-form-item>
+                    <zk-form-item key-name="gValidStatus" prop="searchValue">
                         <tp-radio-group size="mini" code-type="Validind" default-value="true" v-model="scope.filters.radio"></tp-radio-group>
-                    </tp-form-input>
-                </tr>
-                <tr>
-                    <tp-form-label keyName="saaTaskVoTaskCode" defaultName="Task Code" :width="3"></tp-form-label>
-                    <tp-form-input prop="taskCode" :width="5" id="teee">
-                        <tp-dbclick code="findProduct" @row-select="selectProductCode" codeName="productCode"  table-one-params="productCode" lable-params="productName" table-two-params="productCode,productName" search-one-params="productCode" :is-more-select="false" ids="productCode" v-model="scope.filters.productCode"> </tp-dbclick>
-                    </tp-form-input>
-                    <tp-form-label keyName="saaTaskVoTaskName" defaultName="Task Name" :width="3"></tp-form-label>
-                    <tp-form-input prop="taskCName" :width="5">
-                        <tp-auto-complete size="mini" :isReadonly="false" code="findProduct" codeName="productCode"  labelName="productName,productCode" v-model="scope.filters.productCode1"></tp-auto-complete>
-                    </tp-form-input>
-                    <tp-form-label keyName="gValidStatus" defaultName="Valid Status" :width="3"></tp-form-label>
-                    <tp-form-input prop="searchValue" :width="5">
-                    </tp-form-input>
-                </tr>
-            </template>
+                    </zk-form-item>
+                </el-row>
+                <el-row class="row">
+                    <zk-form-item key-name="saaTaskVoTaskCode" prop="taskCode">
+                        <tp-dbclick code="findProduct" @row-select="selectProductCode" codeName="productCode" table-one-params="productCode" lable-params="productName" table-two-params="productCode,productName" search-one-params="productCode" :is-more-select="false" ids="productCode" v-model="scope.filters.productCode"> </tp-dbclick>
+                    </zk-form-item>
+                    <zk-form-item key-name="saaTaskVoTaskName" prop="taskCName">
+                        <tp-auto-complete size="mini" :isReadonly="false" code="findProduct" codeName="productCode" labelName="productName,productCode" v-model="scope.filters.productCode1"></tp-auto-complete>
+                    </zk-form-item>
+                    <zk-form-item key-name="gValidStatus" prop="searchValue">
+                    </zk-form-item>
+                </el-row>
+            </template> -->
             <!--工具条-->
             <template v-slot:toolbar="scope">
                 <el-button size="mini" type="primary" @click="onOpenPdf(scope)">{{ 'OpenPdf' | translate('OpenPdf') }}</el-button>
                 <!-- <tp-import-execl preview></tp-import-execl> -->
                 <!-- <tp-column-filter :columnOptions="columnOptions" @changeCheckedOptions="onChangeCheckedOptions"></tp-column-filter> -->
             </template>
-            <template v-slot:table>
-                <el-table-column :label="'sysMenuTaskCode' | translate('TaskCode')" width="200">
-                    <template v-slot="scope">
-                        <a href="javascript:;" @click="onHandleEdit(scope.row, 'edit')"> {{scope.row.taskCode}} </a>
-                    </template>
-                </el-table-column>
-                <el-table-column :label="'gCname' | translate('Chinese Name')" width="120">
-                    <template v-slot="scope">
-                        <router-link :to="{ name: 'taskApp' }" target="_blank">{{scope.row.taskCName}}</router-link>
-                    </template>
-                </el-table-column>
-                <el-table-column prop="taskTName" :label="'gTname' | translate('Traditional Name')" width="120">
-                </el-table-column>
-                <el-table-column class-name="yyyy" v-if="checkedOptions.indexOf('gZname') >= 0" prop="taskEName" :label="'gZname' | translate('English Name')" width="120">
-                </el-table-column>
-                <el-table-column prop="groupName" :label="'saaTaskVoTaskGroupName' | translate('Group Name')" width="120">
-                </el-table-column>
-                <el-table-column prop="validind" :formatter="formatStatus" :label="'gValidStatus' | translate('Valid Status')" width="120">
-                </el-table-column>
-                <el-table-column :label="'gTitleOperation' | translate('Operation')" min-width="320">
-                    <template v-slot="scope">
-                        <el-button size="mini" type="primary" @click="onHandleEdit(scope.row, 'edit')">{{ 'gBtnEdit' | translate('Edit') }}</el-button>
-                        <el-button size="mini" type="primary" @click="onHandleEdit(scope.row, 'view')">{{ 'gBtnView' | translate('View') }}</el-button>
-                        <el-button type="danger" size="mini" @click="onHandleDel(scope.row)">{{ 'gBtnDelete' | translate('Delete') }}</el-button>
-                    </template>
-                </el-table-column>
-            </template>
-        </tp-table>
+        </zk-table>
     </section>
 </template>
 <script>
@@ -96,6 +104,12 @@ export default {
     mixins: [Vue.tpUtil.getMixins()],
     data: function() {
         return {
+            form: {
+                input1: '111'
+            },
+            rules: {
+                input1: [{ required: true, message: 'nihao', trigger: 'change' }],
+            },
             active: ['1', '2'],
             saaTaskVoFilters: {
                 input1: '',
@@ -109,6 +123,81 @@ export default {
                 productCode: '',
                 productCode1: '',
                 productName: ''
+            },
+            table: {
+                api: "sysTaskSearch",
+                vo: "saaTaskVoList",
+                context: "auth",
+                filters: {
+                    input1: '',
+                    input2: '',
+                    input3: '',
+                    input4: 7777,
+                    taskCode: 5667,
+                    validind: 'false',
+                    radio: '',
+                    checkbox: '',
+                    productCode: '',
+                    productCode1: '',
+                    productName: ''
+                },
+                fields: [{
+                    prop: null,
+                    labelKey: 'sysMenuTaskCode',
+                    width: '200px',
+                    btns: [{
+                        prop: 'taskCode',
+                        flag: 'tEdit',
+                        type: 'text'
+                    }]
+                }, {
+                    prop: 'taskCName',
+                    labelKey: 'gCname',
+                    width: '120px'
+                }, {
+                    prop: 'taskTName',
+                    labelKey: 'gTname',
+                    width: '120px'
+                }, {
+                    prop: 'taskEName',
+                    labelKey: 'gZname',
+                    width: '120px',
+                    format: {
+                        type: 'num'
+                    }
+                }, {
+                    prop: 'groupName',
+                    labelKey: 'saaTaskVoTaskGroupName',
+                    width: '120px',
+                    format: {
+                        type: 'date',
+                        format: "dd-MM-yyyy HH:mm:ss"
+                    }
+                }, {
+                    prop: 'validind',
+                    labelKey: 'gValidStatus',
+                    width: '120px',
+                    format: {
+                        type: 'ggcode',
+                        codeType: "Validind"
+                    }
+                }, {
+                    prop: null,
+                    labelKey: 'gTitleOperation',
+                    btns: [{
+                        btnKey: 'gBtnEdit',
+                        flag: 'edit',
+                        type: 'btn'
+                    }, {
+                        btnKey: 'gBtnView',
+                        flag: 'view',
+                        type: 'btn'
+                    }, {
+                        btnKey: 'gBtnDelete',
+                        flag: 'deletes',
+                        type: 'btn'
+                    }]
+                }]
             },
             floatData: [{
                 name: 'item1',
@@ -224,6 +313,15 @@ export default {
         beforeValidate(data) {
             console.log(data);
             return true;
+        },
+        onSubmit() {
+            this.$refs.form.validate(function(valid) {
+                console.log(valid)
+            });
+        },
+        onBtn(row, flag, index) {
+            console.log(row)
+            console.log(flag)
         }
     }
 }

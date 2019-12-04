@@ -6,6 +6,8 @@
     background: #fff; 
 } 
 .workbench .flex-l{
+    margin-top: 5px;
+    margin-right: 5px;
     flex: 0 0 240px;
     width: 240px;
 }
@@ -13,6 +15,27 @@
 .workbench .flex-m {
     flex: 1;
     width: calc(100% - 480px);
+}
+
+.workbench .flex-sta {
+    display: flex;
+    width: 100%;
+    height: 160px; 
+    background: #fff; 
+} 
+.workbench .flex-sta-r {
+    margin-top: 5px;
+    flex: 0 0 350px;
+    width: 350px;
+    height: 135px; 
+}
+
+.workbench .flex-sta-l {
+    margin-top: 5px;
+    margin-right: 5px;
+    height: 100px; 
+    flex: 1;
+    width: calc(100% - 350px);
 }
 
 .workbench .mydefine-menu {
@@ -29,8 +52,8 @@
 }
 
 .mydefine-menu .mydefine-menu-item {
-    width: 105px;
-    height: 105px;
+    width: 104px;
+    height: 104px;
     box-sizing: border-box;
     border-radius: 4px;
     margin-right: 10px;
@@ -207,6 +230,134 @@
 .login-form-wrapper {
     width: 100%;
     height: 100vh;
+    padding-top: 150px;
+    background: url("../img/u22.jpg") no-repeat;
+    background-size: cover;
+}
+.login-form-wrapper-header{
+    position: relative;
+    width: 100%;
+    height: 53px;
+    background: inherit;
+    background-color: rgba(255, 255, 255, 1);
+    border: none;
+    border-radius: 0px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.login-form-wrapper-header_left{
+    position: absolute;
+    left: 50px;
+    top: 8px;
+    width: 140px;
+    height: 38px;
+    background: url("../img/u6.png") no-repeat;
+    background-size: cover;
+}
+.login-form-wrapper-header_right{
+    position: absolute;
+    right: 40px;
+    top: 5px;
+    width: 138px;
+    height: 43px;
+    background: url("../img/u8.png") no-repeat;
+    background-size: cover;
+}
+
+.login-container {
+    /*float: right;*/
+    width: 360px;
+    margin: 0 auto;
+    height:288px;
+    background-color:rgba(255, 255, 255, 1);
+    border:none;
+    border-radius:4px;
+    -moz-box-shadow:0px 1px 4px rgba(0, 0, 0, 0.117647058823529);
+    -webkit-box-shadow:0px 1px 4px rgba(0, 0, 0, 0.117647058823529);
+    box-shadow:0px 1px 4px rgba(0, 0, 0, 0.117647058823529);
+}
+
+.login-container-ex {
+    height:318px;
+}
+
+.login-container .title {
+    font-size: 18px;
+    margin: 0px auto 0px auto;
+    text-align: center;
+
+    line-height: 64px;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    width: 292px;
+    height: 64px;
+    background: inherit;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    border-left: 0px;
+    border-top: 0px;
+    border-right: 0px;
+    border-radius: 0px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-size: 18px;
+    color: #303133;
+}
+ 
+.login-container button {
+    height: 34px;
+    line-height: 24px;
+} 
+
+.login-container .el-input__inner {
+    background: #fff;
+    width: 292px;
+    height: 40px;
+}
+.login-container  .el-form-item{
+    padding-left: 34px;
+    margin-top:16px;
+}
+.login-container .el-form-item__content {
+    line-height: 40px;
+}
+.login-container .login-btn-item .el-form-item__content{
+    line-height: 40px;
+    margin-top: 5px;
+}
+.login-container button{
+    width: 292px !important;
+    height: 40px;
+    /*background: inherit;
+    background-color: rgba(0, 167, 84, 1);*/
+    border: none;
+    border-radius: 4px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-size: 14px;
+    /*color: #FFFFFF;*/
+}
+.login-container .login-footer_txt{
+    width: 100%;
+    height: 95px;
+    margin-top: 60px;
+    background: url("../img/u33.png") no-repeat;
+    background-size: cover;
+}
+/*.login-container button:hover{
+    background-color: rgba(3, 119, 62, 1);
+} */
+/* login end */
+
+
+/* login start */
+/*.login-form-wrapper {
+    width: 100%;
+    height: 100vh;
     background: url("../img/login_bg.jpg") no-repeat;
     background-size: cover;
 }
@@ -239,7 +390,7 @@
 .login-container .login-btn-item .el-form-item__content{
     line-height: 40px;
     margin-top: 5px;
-}
+}*/
 
 /* login end */
 .img-file-row {
@@ -494,7 +645,7 @@
     background: rgba(238,241,246,.5);
     bottom: 10px;
     z-index: 1000;
-	text-align: center;
+    text-align: center;
 }  
 .foot-fixed-height{
    height:50px;
@@ -776,7 +927,7 @@ h4.td-title {
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
-	color: #303133;
+    color: #303133;
 }
 .float-menu-item {
     padding: 0 6px;
@@ -803,4 +954,74 @@ h4.td-title {
 .tp-alert .el-alert__closebtn {
     font-size: 9px;
     top: 8px;
+}
+.el-card__header {
+    padding: 6px 10px;
+}
+.el-card__body {
+    padding: 10px;
+}
+/*.gis-item .el-card__header {
+    padding: 7.5px;
+}*/
+.gis-card .el-card__body {
+    padding: 0 0;
+}
+.gis-item .el-card__body {
+    height: 100px;
+}
+.bg-purple-blue {
+    background: rgb(179, 216, 255);
+}
+.bg-purple-green {
+    background: #E6A23C;
+}
+.bg-purple-success {
+    background: #67C23A;
+}
+.gis-t {
+    text-align:center;
+    padding: 15px 10px;
+    height: 72px;
+    color: #FFFFFF;
+}
+.gis-t div{
+    padding-bottom: 30px;font-size: 18px;
+}
+
+.el-link--inner {
+    font-size: 12px;
+}
+
+.login-select .el-input__suffix {
+    right: 35px;
+}
+.zk-table {
+    background: #fff;
+    margin-top:0;
+}
+.zk-table .row{
+    margin-bottom: 0px;
+}
+
+.zk-table .row .td{
+    border:1px solid #dfe6ec;
+    /*height:32px;*/
+    float:left;
+    margin-right:-1px;
+    margin-top:-1px;
+    display:block;
+    border-radius: 0px;
+    padding-right: 4px;
+}
+
+.zk-table .row .td-lable{
+    text-align: right;
+    padding: 4px;
+    font-weight: 500;
+    color: #303133;
+}
+
+.zk-table .td .el-form-item__content, .zk-table .td .el-form-item {
+    width:100%;
 }

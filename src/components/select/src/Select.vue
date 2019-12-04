@@ -233,7 +233,7 @@ export default {
                 if (this.searchObject && typeof this.searchObject === 'string') {
                     Object.assign(param, JSON.parse(this.searchObject));
                 }
-                cacheKey = Vue.tpUtil.getMd5(this.path + JSON.stringify(param) || '');
+                cacheKey = Vue.tpUtil.getMd5(JSON.stringify(param) || '');
             } else {
                 // poName
                 url = Vue.tpUtil.getUrl({ apiName: 'layoutSelectGGCodeOtherList', contextName: 'auth' });
@@ -249,7 +249,7 @@ export default {
                 if (this.searchObject && typeof this.searchObject === 'string') {
                     Object.assign(param, JSON.parse(this.searchObject));
                 }
-                cacheKey = Vue.tpUtil.getMd5(this.path + JSON.stringify(param) || '');
+                cacheKey = Vue.tpUtil.getMd5(JSON.stringify(param) || '');
             }
 
             if (this.isCache) {

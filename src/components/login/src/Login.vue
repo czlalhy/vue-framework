@@ -1,32 +1,33 @@
 <template>
     <div class="login-form-wrapper">
-        <el-form :model="form" :rules="rules" ref="form" class="demo-ruleForm login-container">
-            <h3 class="title">{{ 'gBtnLogin' | translate('Sign in')}}（{{version}}）</h3>
-            <el-form-item prop="account" :label="'gAccounts' | translate('Accounts')" label-position="top">
-                <el-input type="text" :autofocus="true" :maxlength="maxlength" id="account" v-model="form.account" auto-complete="off" @keyup.enter.native="next('checkPass')"></el-input>
+        <el-form :model="form" :rules="rules" ref="form" class="demo-ruleForm login-container" :class="islanguage?'login-container-ex':''">
+            <h3 class="title">{{'Login' | translate}}</h3>
+            <el-form-item prop="account" label="" label-position="left">
+                <el-input type="text" :autofocus="true" id="account" v-model="form.account" auto-complete="off" @keyup.enter.native="next('checkPass')" placeholder="Your Account"></el-input>
             </el-form-item>
             <span style="color: red;" v-if="isLock">{{errorMessage}}</span>
-            <el-form-item prop="checkPass" :label="'gPassword' | translate('Password')" label-position="top">
-                <el-input type="password" v-model="form.checkPass" id="checkPass" auto-complete="off" @keyup.enter.native="next('submitLogin')"></el-input>
+            <el-form-item prop="checkPass" label="" label-position="left">
+                <el-input type="password" v-model="form.checkPass" id="checkPass" auto-complete="off" @keyup.enter.native="next('submitLogin')" placeholder="Password"></el-input>
             </el-form-item>
             <span style="color: red;" v-if="isWrong">{{errorMessage}}</span>
-            <el-form-item v-if="islanguage" prop="language" :label="'gTitleLanguage' | translate('Language')" label-position="top">
+            <el-form-item v-if="islanguage" prop="language" label="" label-position="top">
                 <el-select v-model="form.language" @change="setI18n" class="login-select">
                     <el-option v-for="item in options" :label="item.label" :value="item.value"></el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item class="login-btn-item">
-                <el-button type="primary" style="width:45%;" id="submitLogin" @submit.native="handleSubmit" @click.native.prevent="submit">{{ 'gBtnLogin' | translate('Sign in')}}</el-button>
+            <el-form-item>
+                <el-button type="primary" :loading="repeatLock" style="width:45%;" id="submitLogin" @submit.native="handleSubmit" @click.native.prevent="submit">{{ 'gBtnLogin' | translate('Sign in')}}</el-button>
             </el-form-item>
             <transition name="fade">
                 <el-dialog :title="dialogLoading.status" :showClose="false" :closeOnClickModal="false" :visible.sync="dialogLoading.showLoading" class="dialog-small">
-                    <h4 style="margin-top: 5px; margin-bottom: 5px;">{{dialogLoading.statusText}}<a href="javascript:;" style="margin-left: 10px;" @click=onClickMore>More</a></h4>
-                    <span v-if="msgVisable">{{dialogLoading.msg}}</span>
+                    <h4 style="margin-top: 5px; margin-bottom: 5px;">{{dialogLoading.statusText}}</h4>
+                    <span>{{dialogLoading.msg}}</span>
                     <span slot="footer" class="dialog-footer">
                         <el-button type="primary" @click="handleSure">{{"gBtnConfirm"| translate("Confirm")}}</el-button>
                     </span>
                 </el-dialog>
             </transition>
+            <div class="login-footer_txt"></div>
         </el-form>
     </div>
 </template>

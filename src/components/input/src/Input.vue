@@ -122,6 +122,8 @@ export default {
             } else {
                 if (this.code || this.code == 0) {
                     val = Vue.tpUtil.delcommafy(this.code) || +this.code;
+                    if(this.codeCache === val)
+                        return;
                 }
             }
 
